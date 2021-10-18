@@ -1,10 +1,9 @@
-var bgColor;
-var textColor;
-var invColor;
-var invTextColor;
-var fontSize;
-var font;
-var settingsIconSRC;
+var bgColor; //Variable for main Selected BG Colour
+var textColor; //Variable for the main text Colour
+var invColor; //Variable for the inverse of the selected BG Colour
+var invTextColor; //Variable for the text colour of the inverse Colour
+var settingsIconSRC; //Variable for the SRC of the respective Settings Icon
+var font; //Variable for the selected Font
 
 
 var colorPicker = document.getElementById("colourPicker"); //Variable for Colour Input Element
@@ -35,35 +34,31 @@ window.onload = function()
   if (localStorage.getItem("bgColor") == null)
   {
     bgColor = "ffffff"; //Sets BG Colour to white as the default value
-    calcColor();
+    calcColor(); //Sets all of the other colours based on the White BG Colour
   }
 
   if (localStorage.getItem("font") == null)
   {
-    localStorage.setItem("font", "Verdana");
-    setFont();
+    localStorage.setItem("font", "Verdana"); //Sets "Verdana" as the default Font
+    setFont(); //Applies "Vardana" as the Selected Font
   }
 
   if (colorPicker != null && fontList != null)
   {
     colorPicker.addEventListener("input", getColor, false); //Changes BG Colour as it is being input
     fontList.addEventListener ("input", getFont, false); //Adds Event listener to Font Dropdown List
-    //fontSizeInput.addEventListener("input", getFontSize, false); //Changes Font size as Input is Entered is moved
-    //fontSizeInput.value = localStorage.getItem("fontSize").toString().substring(0,2); //sets the selected value to the selected font
   }
 
   setColor (); //sets Background colour to value of colour input
 
   setFont(); //sets font to the selected font of the dropdown list
-
-  //setFontSize (); //sets font size to the selected font of the dropdown list
 }
 
 //Function to Change BG Colour as it is being input
 function getColor(event)
 {
   bgColor = colorPicker.value.toString(); //Sets the Variable "Color" to the value of the Colour Input;
-  calcColor();
+  calcColor(); //Calculates and sets the other colour values
 }
 
 function calcColor ()
@@ -140,24 +135,28 @@ function setColor ()
 
   for (let i = 0; i < evenSections.length; i++)
   {
+    //Applies the colour to all Even Sections of the Website
     evenSections[i].style.backgroundColor = localStorage.getItem("invColor");
     evenSections[i].style.color = localStorage.getItem("invTextColor");
   }
 
   for (let i = 0; i < oddSections.length; i++)
   {
+    //Applies the colour to all Odd Sections of the Website
     oddSections[i].style.backgroundColor = localStorage.getItem("bgColor");
     oddSections[i].style.color = localStorage.getItem("textColor");
   }
 
   for (let i = 0; i < oddnBtns.length; i++)
   {
+    //Applies the colour to all Buttons in Odd Sections of the Website
     oddnBtns[i].style.backgroundColor = localStorage.getItem("invColor");
     oddnBtns[i].style.color = localStorage.getItem("invTextColor");
   }
 
   for (let i = 0; i < evenBtns.length; i++)
   {
+      //Applies the colour to all Buttons in Even Sections of the Website
     evenBtns[i].style.backgroundColor = localStorage.getItem("bgColor");
     evenBtns[i].style.color = localStorage.getItem("textColor");
   }
@@ -169,6 +168,7 @@ function setColor ()
 
   if (facebook != null && instagram != null && twitter != null && linkedin != null)
   {
+    //Sets the colour of the Social media Icons
     facebook.setAttributeNS(null,"fill",localStorage.getItem("textColor"));
     instagram.setAttributeNS(null,"fill",localStorage.getItem("textColor"));
     twitter.setAttributeNS(null,"fill",localStorage.getItem("textColor"));
